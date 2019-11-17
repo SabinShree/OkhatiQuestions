@@ -46,9 +46,9 @@ class DropdownComponents extends React.Component {
                 fontSize: "24px"
 
             }),
-            option: (provided) => ({
+            option: (provided, {data, isDisabled, isFocused, isSelected}) => ({
                 ...provided,
-                backgroundColor: '#B3CCC2',
+                backgroundColor: isFocused ? '#a2b2cc' : '#B3CCC2',
                 borderRadius: '16px',
                 padding: "7px",
                 margin: "5px",
@@ -94,7 +94,7 @@ class DropdownComponents extends React.Component {
                     ...provided,
                     width: '100%',
                     padding: "10px",
-                    border : "1px solid black"
+                    border: "1px solid black"
                 }
             ),
             clearIndicator: (provided) => ({
@@ -111,22 +111,32 @@ class DropdownComponents extends React.Component {
                 display: "block",
                 paddingBottom: '0',
             }),
+            loadingMessage: (provided) => (
+                {
+                    ...provided,
+                    color: "red"
+                }
+            ),
+            indicatorsContainer : (provided)=> (
+                {
+                    ...provided,
+                    color : 'red'
+                }
+            )
         };
         return (
             <div style={{width: "800px", margin: "0 auto"}}>
 
                 <p>DropDown Menu</p>
                 <Select
-                    placeholder=''
+                    placeholder='Select...'
                     components={animatedComponents}
                     closeMenuOnSelect={false}
                     isMulti
                     allowCreate={true}
-                    DownChevron={true}
                     options={this.state.dropdownData}
                     noResultsText={() => null}
                     styles={colourStyles}
-
                 />
 
 
